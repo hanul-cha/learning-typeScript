@@ -1,0 +1,6 @@
+{
+    "compilerOptions": {
+        "target": "es6", //빌드 결과물을 es6 방식을 한다는 뜻
+        "module": "commonjs",
+    }
+}
