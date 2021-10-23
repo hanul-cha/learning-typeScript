@@ -1,21 +1,32 @@
+//tip : 초보 typescript사용자들은 온통 변수에 type지정을 해버림 
+//typescript는 대부분 자동적으로 type을 생성해줌
+//간단한 변수들은 타입을 생략할수 있도록하지만 가시성을 위해 사용해도 좋음
+//easy test
 /*
-브라우저는 js밖에 못읽기때문에 js로 변환시켜줘야함
+1. 여러분이 가장 좋아하는 곡과 가수이름을 변수에 object 자료형으로 담아보십시오.
 
-tsc -w 켜놓으면 실시간으로 컴파일 해줌
 */
+let Favorite = {
+    song: "요즘",
+    singger: "양다일"
+};
 /*
-들어올수 있는 타입
-string
-number
-boolean
-null
-undefined
-bigint
-[]
-{}
-등등
+2. 다음과 같이 생긴 자료의 타입지정을 해보자
+
+let project = {
+    menber : ["kim", "park"],
+    days : 30,
+    started : true,
+}
+
+project 변수 우측에 적으면 됩니다.
+
+member 안엔 문자로 가득한 array만 들어올 수 있고
+
+days는 숫자, started는 true/false만 들어올 수 있습니다.
 */
-let useName = "cha"; //이변수엔 문자형만 들어올수 있음
-let aryName = ["cha", "kim", "moon"];
-let abjName = { name: "cha" }; //name이라는자료가 들어올수도 있고 아닐수도 있음...
-let multiName = "cha"; //문자형 또는 숫자형 둘다 올수 있음 
+let project = {
+    menber: ["kim", "park"],
+    days: 30,
+    started: true,
+};
