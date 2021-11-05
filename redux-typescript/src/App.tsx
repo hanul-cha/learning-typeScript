@@ -12,7 +12,6 @@ function App() {
   const handlePokemonName = (event: React.ChangeEvent<HTMLInputElement>) => setPokemonName(event.target.value)
   const searchPokemonv = () => {
     dispatch(fetchPokemonData(pokemonName))
-    console.log(pokemonReducer.pokemon)
   }
 
 
@@ -24,9 +23,9 @@ function App() {
       {pokemonReducer.success &&
         <div>
             <p>{pokemonName}</p>
-            {pokemonReducer.pokemon?.abilities.map(abilities => {
+            {pokemonReducer.pokemon?.abilities.map((abilities, i) => {
               return (
-                <div>
+                <div key={i}>
                   <p>{abilities.ability.name}</p>
                   <p>{abilities.slot}</p>
                 </div>
