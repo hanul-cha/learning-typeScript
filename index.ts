@@ -149,3 +149,54 @@ let 학교 :{
 학교.score[4] = false;
 학교.friend = ['Lee' , 학교.teacher]
 
+
+
+
+//함수에 타입지정하기
+
+function fnc(x :number) :number {
+    return x + 3
+}
+function fnc2(x :number) :void {
+    x + 3
+}
+
+//파라미터에 타입이 지정이 되었다면 무조건 파라미터를 넘겨주지 않으면 오류가남
+
+function fnc3(x? :number) {
+    x + 3
+}
+//파라미터를 써도 되고 안써도 된다는 함수를 만들고 싶을땐 이렇게 사용하면 된다!\
+
+/* 
+x? :number는 x :number|undefined와 같다
+*/
+
+function func4(x :number|string) :void{
+    x + 3 
+}
+//이건 타입이 어떤지 아직 확정되지 않아서 오류를 발생시킴 그걸 방지하려면 if문을 사용해야되는데
+//그것보단  typeof같은 네로잉을 사용할것임
+
+function riteName(name? :string) {
+    if(name) {
+        console.log(`안녕하세요 ${name}`)
+    } else {
+        console.log("이름을 입력해주세요")
+    }
+}
+
+function canMarriage(money :number, house: boolean, Charm :string):string|void {
+    let score :number = 0;
+    score += money
+    if(house === true){
+        score += 500
+    }
+    if(Charm === "상"){
+        score += 100
+    }
+    if(score >= 600){
+        return "결혼가능"
+    }
+}
+console.log(canMarriage(100,true,"상"))
