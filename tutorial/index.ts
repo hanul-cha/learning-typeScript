@@ -43,3 +43,62 @@ function myfnc(x :{ subject: string|string[] }) {
 }
 
 myfnc(jane)
+
+
+
+
+//타입을 변수에 할당해서 쓰는법
+type AnimalType = string | number | undefined;
+
+let animal :AnimalType = ""
+
+/* 
+const에 할당된 배열은 수정이 가능하다 const는 재할당을 막는 선언문이지 내부의 키값을
+바꾼다고 경고를 발생시키진 않음 하지만 typescript에선 가능하다
+*/
+const boyFriend = {
+    name: "hanul"
+}
+boyFriend.name = "hansol"
+//에러 발생안함
+
+type GirlFriendType = {
+    readonly name: string
+}
+const girlFriend :GirlFriendType = {
+    name: "ember"
+}
+
+/* 
+girlFriend.name = "" readonly가 있어서 읽기전용이 되버림 = 수정불가에러
+유의할점은 여기서 에러는 에디터에서 보여주는 에러일뿐 실제로 막진않음 js문법상 문제가 없기때문
+*/
+
+//타입변수 합치기
+type Type1 = string
+type Type2 = number
+
+type margeType = Type1 | Type2
+
+/* 
+오브젝트 타입을 합칠때 내용물을 합치고 싶으면 &연산자를 사용할수 있음
+개발자들은 합친다는 용어보단 extend한다고 표현함
+*/
+
+type PositionX = { x :number };
+type PositionY = { y :number };
+
+type NewPosition = PositionX & PositionY
+
+//test
+
+type NewAryType = {
+    color? :string
+    size :number
+    readonly position :number[]
+}
+
+let test :NewAryType = {
+    size: 123,
+    position: [1,2,3]
+}

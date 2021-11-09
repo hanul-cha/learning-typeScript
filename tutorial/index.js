@@ -39,3 +39,19 @@ function myfnc(x) {
     }
 }
 myfnc(jane);
+let animal = "";
+/*
+const에 할당된 배열은 수정이 가능하다 const는 재할당을 막는 선언문이지 내부의 키값을
+바꾼다고 경고를 발생시키진 않음 하지만 typescript에선 가능하다
+*/
+const boyFriend = {
+    name: "hanul"
+};
+boyFriend.name = "hansol";
+const girlFriend = {
+    name: "ember"
+};
+let test = {
+    size: 123,
+    position: [1, 2, 3]
+};
