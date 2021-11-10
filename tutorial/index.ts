@@ -1,88 +1,50 @@
-//riteral type
-let testName :123;//이제 여기엔 123이라는 숫자만 들어올수 있음
-testName = 123;
+//타입스크립트로 HTML 변경과 조작 할때 주의점
 
+let titleH4 = document.querySelector("#title");
+//위에 변수엔 ts입장에선 잘 찾은건지 틀린건지 아직 모름 즉 null또는 알맞은값 두가지가 올수 있음
 
-type RsfType = "가위"|"바위"|"보"
-function rsf(x :RsfType) :RsfType[] {
- return [x]
+if (titleH4 != null) {
+    titleH4.innerHTML = "반가워용"
+}
+//그래서 narrowing을 해줘야함
+
+//instanceof를 쓰는법
+if (titleH4 instanceof Element) {
+    titleH4.innerHTML = "반가워용"
 }
 
-//lireral type의 문제점 
-let myAry = {
-    name:"kim" 
+//엘리먼트를 넣은 변수자체에 as 를 사용해 내로잉해줄수 있지만 별로 같음
+// ex) let titleH4 = document.querySelector("#title") as Element
+
+//옵셔널체이닝을 사용하는방법 이것도 내로잉으로 인정한다고한다
+if (titleH4?.innerHTML != undefined) {
+    titleH4.innerHTML = "반가워용"
 }
 
-function myFnc(a : "kim") {
 
-}
-
-/* myFnc(myAry.name) */
-
-
+//2번째 instanceof를 사용하는게 제일 좋을거같다.
 /* 
-이걸보면 왜 안되냐고 할수 있음 언뜻보기엔 파라미터가 똑같은 모양이니까
-여기서 놓치고 있는건 파라미터에 지정된 타입이 "kim" 이라는것이다
-myAry에 타입은 string이고 a의 타입은 "kim"이다 그러니까 안됨
-
-이건 여러가지로 해결가능한데 그중하나가 as const이다
-let myAry = {
-    name:"kim" 
-} as const
-이렇게 사용하는데 readonly로 바꿔주고 할당된 값 자체를 type으로 지정해준다
+instacneof는 prototype의 참조 여부를 찾아 반환하는것이기 때문에
+보다 정확한 타입을 입력해주어야 한다 typescript에선 아주 여러가지 타입을 제공함
+*/
+let myLink = document.querySelector('.link');
+if(myLink instanceof HTMLAnchorElement) {
+    myLink.href = 'http://kakao.com'
+}
+/* 
+HTMLAnchorElement타입은
+href뿐 아니라 style, class 이런것들도 쓸수 있다
 */
 
+let myBtn = document.getElementById('button');
+/* myBtn?.addEventListener("click", function(){
+    console.log("안녕")
+}) */
+//이런식으로 옵셔널 체이닝으로 해결할수도 있음
 
-
-/* **  함수의 type alias지정  ** */
-type FncType_1 = (a :string) => number;
-
-let fnc1 :FncType_1 = (a) => {
-    return 123
-};
-//타입스크립트에서의 함수 엘리어스 지정은 에로우함수로 만들고 적용은 함수 표현식으로 한다
-
-
-type 회원정보타입 = {
-    name :string
-    age :number
-    plusOne :(a :number) => number 
-    changeName :(a? :string) => void
+if(myBtn instanceof HTMLButtonElement) {
+    myBtn.addEventListener("click", function(){
+        console.log("안녕")
+    })
 }
 
-let 회원정보 :회원정보타입 = {
-    name : 'kim',
-    age : 30,
-    plusOne (x){
-      return x + 1
-    },
-    changeName : () => {
-      console.log('안녕')
-    }
-  }
-  회원정보.plusOne(1);
-  회원정보.changeName();
-
-type CutType = (x :string) => string
-
-let cutZero :CutType = function (x){
-    let result = x.replace(/^0+/, "");
-    return result
-}
-function removeDash(x :string) :number{
-    let result = x.replace(/-/g, "");
-    return parseFloat(result)
-}
-
-type Fnc1Type = (a :string) => string
-type Fnc2Type = (a :string) => number
-
-type Myfnc2 = (a :string, fnc1 :Fnc1Type, fnc2 :Fnc2Type) => void
-
-let myFnc2 :Myfnc2 = (a, fnc1, fnc2) => {
-    let result = fnc1(a);
-    let result2 = fnc2(result)
-    console.log(result2)
-}
-
-myFnc2('010-1111-2222', cutZero, removeDash)
