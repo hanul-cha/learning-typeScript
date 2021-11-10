@@ -10,15 +10,32 @@ let myAry = {
 };
 function myFnc(a) {
 }
-myFnc(myAry.name);
-/*
-이걸보면 왜 안되냐고 할수 있음 언뜻보기엔 파라미터가 똑같은 모양이니까
-여기서 놓치고 있는건 파라미터에 지정된 타입이 "kim" 이라는것이다
-myAry에 타입은 string이고 a의 타입은 "kim"이다 그러니까 안됨
-
-이건 여러가지로 해결가능한데 그중하나가 as const이다
-let myAry = {
-    name:"kim"
-} as const
-이렇게 사용하는데 readonly로 바꿔주고 할당된 값 자체를 type으로 지정해준다
-*/ 
+let fnc1 = (a) => {
+    return 123;
+};
+let 회원정보 = {
+    name: 'kim',
+    age: 30,
+    plusOne(x) {
+        return x + 1;
+    },
+    changeName: () => {
+        console.log('안녕');
+    }
+};
+회원정보.plusOne(1);
+회원정보.changeName();
+let cutZero = function (x) {
+    let result = x.replace(/^0+/, "");
+    return result;
+};
+function removeDash(x) {
+    let result = x.replace(/-/g, "");
+    return parseFloat(result);
+}
+let myFnc2 = (a, fnc1, fnc2) => {
+    let result = fnc1(a);
+    let result2 = fnc2(result);
+    console.log(result2);
+};
+myFnc2('010-1111-2222', cutZero, removeDash);
