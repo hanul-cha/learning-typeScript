@@ -1,50 +1,48 @@
-//클래스 문법에서의 typescript
-class Person {
-    constructor(a) {
-        this.name = a;
-    }
-    fnc2(a) {
-        console.log(`안녕나는 ${a}야`);
-    }
-}
-Person.prototype.fnc = () => {
+// 함수 rest파라미터, destructuring 할 때 타입지정
+/*
+rest 파라미터는 함수에 파라미터가 몇개들어올지 미리 정의가 불가능한 경우 사용한다
+몇개를 파라미터를 넘겨주든 전부 배열에 담기기 때문에 타입지정도 배열형태의 타입지정을 해주면된다
+spread operator와는 다른아이니 햇갈리지 말자
+*/
+/*
+destructuring 문법은 react많이 쓴는 사람이면 익숙할텐데
+*/
+let [prop1, prop2] = ["hi", 123];
+let people = {
+    student: true, age: 20
 };
-//필드값에 타입을 제외하고 라도 미리 선언해주지 않으면 할당할때 오류를 반환한다
-let people = new Person("123");
-let people2 = new Person();
-//easy test
-class Word {
-    constructor(...params) {
-        let thisIsString = [];
-        let thisIsNumber = [];
-        params.forEach((i) => {
-            if (typeof i === "string") {
-                thisIsString.push(i);
-            }
-            else {
-                thisIsNumber.push(i);
-            }
-        });
-        this.num = thisIsNumber;
-        this.str = thisIsString;
-    }
-}
-let obj = new Word('kim', 3, 5, 'park');
-console.log(obj.num); //[3,5]
-console.log(obj.str); //['kim', 'park']
-let square = {
-    color: "red",
-    width: 123
+let { age } = people;
+//이런거
+let myObj = {
+    student: true,
+    age: 20
 };
-let student = { name: "kim" };
-let teacher = { name: "kim", age: 20 };
-let 상품 = { brand: 'Samsung', serialNumber: 1360, model: ['TV', 'phone'] };
-let 장바구니 = [{ product: '청소기', price: 7000 }, { product: '삼다수', price: 800 }];
-const myObj = {
-    plus(a, b) {
-        return a + b;
-    },
-    minus(a, b) {
-        return a - b;
-    }
+const myfnc = ({ student, age }) => {
+    console.log(student, age);
 };
+myfnc(myObj);
+//이런거
+const maxNumber = (...num) => {
+    let maxNum = 0;
+    num.forEach(i => {
+        if (maxNum < i) {
+            maxNum = i;
+        }
+    });
+    return maxNum;
+};
+console.log(maxNumber(4, 2, 6, 2, 9));
+const myObj2 = {
+    user: "kim",
+    comment: [3, 5, 4],
+    admin: false
+};
+const myFnc2 = ({ user, comment, admin }) => {
+    console.log(user, comment, admin);
+};
+myFnc2(myObj2);
+const myAry = [40, "win", false];
+const myFnc3 = ([a, b, c]) => {
+    console.log(a, b, c);
+};
+myFnc3(myAry);
