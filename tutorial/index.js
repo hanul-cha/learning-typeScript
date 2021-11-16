@@ -46,3 +46,14 @@ const myFnc3 = ([a, b, c]) => {
     console.log(a, b, c);
 };
 myFnc3(myAry);
+const animalFnc = (animal) => {
+    if ('swim' in animal) { // Fish타입인지 검사하는 조건문
+        animal.swim;
+    }
+};
+const myWheel = (x) => {
+    if (x.wheel === "4개") {
+    }
+};
+//두가지 타입둘다 wheel를 가지고 있어서 접근가능함 
+/* && */ 

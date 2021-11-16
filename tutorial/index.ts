@@ -71,3 +71,38 @@ const myFnc3 = ([a, b, c] :AryType) :void => {
 
 myFnc3(myAry)
 
+/* -----narrowing방법 더 알아보기----- */
+
+type Fish = {
+    swim :string
+}
+type Bird = {
+    fly :string
+}
+
+const animalFnc = (animal :Fish | Bird) => {
+    if( 'swim' in animal ){// Fish타입인지 검사하는 조건문
+        animal.swim
+    }
+}
+//자료형 내로잉을 해줄때 in을 사용해 안에 인자로 존재하는지 검사해주면 된다
+
+//키값이 아예 다를땐 in같은걸 쓸수 있는데 키는같은데 타입이 다를땐 다른방법을 사용한다
+type Car = {
+    wheel :"4개"
+    color :string
+}
+type Bike = {
+    wheel :"2개"
+    color :string
+}
+
+const myWheel = (x :Car | Bike) => {
+    if(x.wheel === "4개") {
+
+    }
+}
+//두가지 타입둘다 wheel를 가지고 있어서 접근가능함 
+
+
+/* && */
