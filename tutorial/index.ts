@@ -132,6 +132,43 @@ StaticClass.skill
 //이런식으론 당연히 가능
 
 
+class User123 {
+    private static x = 10;
+    public static y = 20;
+}
+class UserTest { 
+  private static x = 10; 
+  public y = 20;
+
+  static addOne(파라미터 :number){
+      UserTest.x += 파라미터
+  }
+
+  static printX(){
+      console.log(UserTest.x)
+  }
+}
+
+UserTest.addOne(3)
+UserTest.addOne(10)
+UserTest.printX()
+/* 
+static을 사용해서 직접 부여했기때문에 바로 사용가능함
+*/
+
+class Square {
+    constructor (public width :number, public height :number, public color :string){
+    }//public으로 this 생략
 
 
-
+    drow() {
+        const a = Math.random();
+        let square = `<div style="position:relative; 
+        top:${a * 400}px; 
+        left:${a * 400}px; 
+        width:${this.width}px; 
+        height : ${this.height}px; 
+        background:${this.color}"></div>`;
+        document.body.insertAdjacentHTML( 'beforeend', square );
+    }
+}
