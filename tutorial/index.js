@@ -32,3 +32,19 @@ class Word {
 let obj = new Word('kim', 3, 5, 'park');
 console.log(obj.num); //[3,5]
 console.log(obj.str); //['kim', 'park']
+let square = {
+    color: "red",
+    width: 123
+};
+let student = { name: "kim" };
+let teacher = { name: "kim", age: 20 };
+let 상품 = { brand: 'Samsung', serialNumber: 1360, model: ['TV', 'phone'] };
+let 장바구니 = [{ product: '청소기', price: 7000 }, { product: '삼다수', price: 800 }];
+const myObj = {
+    plus(a, b) {
+        return a + b;
+    },
+    minus(a, b) {
+        return a - b;
+    }
+};
