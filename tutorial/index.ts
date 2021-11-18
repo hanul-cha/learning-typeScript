@@ -87,6 +87,12 @@ const animalFnc = (animal :Fish | Bird) => {
 }
 //자료형 내로잉을 해줄때 in을 사용해 안에 인자로 존재하는지 검사해주면 된다
 
+//class같이 부모인자를 검사하는 방식으로 내로잉 할수도 있음
+let myDate = new Date();
+if(myDate instanceof Date){
+    console.log("true")
+}
+
 //키값이 아예 다를땐 in같은걸 쓸수 있는데 키는같은데 타입이 다를땐 다른방법을 사용한다
 type Car = {
     wheel :"4개"
@@ -106,3 +112,16 @@ const myWheel = (x :Car | Bike) => {
 
 
 /* && */
+
+/* 
+&&연산자는 조건식으로 쓰는것말고도 여러개를 썻을때 특이하게 작동한다
+
+&& 기호로 비교할 때 true와 false를 넣는게 아니라 자료형을 넣으면
+
+&& 사이에서 처음 등장하는 falsy 값을 찾아주고 그게 아니면 마지막 값을 남겨줍니다.
+
+falsy 값은 false와 유사한 기능을 하는 null, undefined, NaN 이런 값들을 의미합니다.
+*/
+
+1 && null && 3   // null이 남음
+undefined && '안녕' && 100  // undefined 남음
