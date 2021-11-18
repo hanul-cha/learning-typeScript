@@ -1,127 +1,44 @@
-// 함수 rest파라미터, destructuring 할 때 타입지정
+//함수에서 사용하는 never타입
 
+const neverFnc = () :never => {
+    throw new Error() //에러를 던져줌으로서 함수가 끝나지않고 중단됨 1,2번 조건을 만족해서 never사용가능
+}
 /* 
-rest 파라미터는 함수에 파라미터가 몇개들어올지 미리 정의가 불가능한 경우 사용한다
-몇개를 파라미터를 넘겨주든 전부 배열에 담기기 때문에 타입지정도 배열형태의 타입지정을 해주면된다
-spread operator와는 다른아이니 햇갈리지 말자
+void와 비슷한 효과를 가지고 있지만 조건이 붙음
+1. return이 없어야함
+2. endPoint가 없어야함
+(실행이 끝나지 않아야함)
 */
 
 /* 
-destructuring 문법은 react많이 쓴는 사람이면 익숙할텐데
+사실 never는 거의 쓰이지 않는다 return이 없다면 void를 사용하면 되기때문
+never같은 타입의 경우는 지정해서 사용한다기보단 함수를 만들다보면 생기는 문제중
+하나기 때문에 알고 있어야 대처가 가능하다
 */
 
-let [prop1, prop2] = ["hi",123]
-
-let people = {
-    student: true, age: 20
-}
-let { age } = people
-//이런거
-
-let myObj = {
-    student: true,
-    age: 20
-}
-
-const myfnc = ({ student, age } :{student :boolean, age :number}) => {
-    console.log(student, age)
-}
-
-myfnc(myObj)
-//이런거
-
-const maxNumber = (...num :number[]) :number => {
-    let maxNum = 0;
-    num.forEach(i => {
-        if(maxNum < i){
-            maxNum = i
-        }
-    })
-
-    return maxNum
-}
-console.log(maxNumber(4,2,6,2,9))
-
-const myObj2 = {
-    user: "kim",
-    comment: [3,5,4],
-    admin: false
-}
-
-interface MyObj2Type {
-    user :string
-    comment :number[]
-    admin :boolean
-}
-
-const myFnc2 = ({ user, comment, admin } :MyObj2Type) :void => {
-    console.log(user, comment, admin)
-}
-
-myFnc2(myObj2);
-
-
-const myAry = [40, "win", false]
-
-type AryType = (number | string | boolean)[]
-
-const myFnc3 = ([a, b, c] :AryType) :void => {
-    console.log(a, b, c)
-}
-
-myFnc3(myAry)
-
-/* -----narrowing방법 더 알아보기----- */
-
-type Fish = {
-    swim :string
-}
-type Bird = {
-    fly :string
-}
-
-const animalFnc = (animal :Fish | Bird) => {
-    if( 'swim' in animal ){// Fish타입인지 검사하는 조건문
-        animal.swim
+//ex
+const strangeFnc = (parameter :string) => {
+    if(typeof parameter == "string") {
+        console.log(parameter)
+    } else {
+        console.log(parameter)  //커서를 parameter에 올려보면 타입이 never타입이다
     }
 }
-//자료형 내로잉을 해줄때 in을 사용해 안에 인자로 존재하는지 검사해주면 된다
+//파라미터 타입을 string으로 지정했기때문에 string타입만 들어올수 있기때문에
+//else가 실행될 일이 없다.
 
-//class같이 부모인자를 검사하는 방식으로 내로잉 할수도 있음
-let myDate = new Date();
-if(myDate instanceof Date){
-    console.log("true")
+//never : 그럴일이 없다
+
+//ex2
+const errFnc = function() {
+    throw new Error()
 }
-
-//키값이 아예 다를땐 in같은걸 쓸수 있는데 키는같은데 타입이 다를땐 다른방법을 사용한다
-type Car = {
-    wheel :"4개"
-    color :string
-}
-type Bike = {
-    wheel :"2개"
-    color :string
-}
-
-const myWheel = (x :Car | Bike) => {
-    if(x.wheel === "4개") {
-
-    }
-}
-//두가지 타입둘다 wheel를 가지고 있어서 접근가능함 
+//이렇게 화살표 함수뿐아니라 함수표현식에서도 아무것도 안남게 되면 never타입으로 지정된다
 
 
-/* && */
 
-/* 
-&&연산자는 조건식으로 쓰는것말고도 여러개를 썻을때 특이하게 작동한다
 
-&& 기호로 비교할 때 true와 false를 넣는게 아니라 자료형을 넣으면
 
-&& 사이에서 처음 등장하는 falsy 값을 찾아주고 그게 아니면 마지막 값을 남겨줍니다.
 
-falsy 값은 false와 유사한 기능을 하는 null, undefined, NaN 이런 값들을 의미합니다.
-*/
 
-1 && null && 3   // null이 남음
-undefined && '안녕' && 100  // undefined 남음
+
