@@ -90,6 +90,48 @@ const myperson = new Person("kim");
 console.log(myperson) //{ name: "kim" }
 
 
+//class 에서 사용가능한 protected
+/* 
+위에 사용한 private를 사용하면 class내에서만 조작 가능하게 바뀐다.
+하지만 estends하고 있는 자식 class에서도 조작이 안된다.
+class끼리는 수정이 가능하고 외부에선 조작을 막아주는 키워드가 protected임
+*/
+
+class ParentUser {
+    protected x = 10
+}
+
+class ChildUser extends ParentUser {
+    doIt() {
+        this.x = 20
+    }
+}
+//이런식으로 참조된 클래스에선 조작가능함
+
+
+//statc
+
+class StaticUser {
+    static x = 10
+    y = 20
+}
+const children = new StaticUser();
+console.log(children) //y: 20
+//static 키워드를 붙이면 부모 class에 직접 부여됨 (자식에게 안물려줌)\
+//extends해도 사용가능
+
+class StaticClass {
+    static skill = "js";
+    intro = StaticClass.skill + `전문가입니다`
+}
+//this.skill이런거 안됨 직접 부여되었기때문에 직접부여된 클래스로만 참조가능
+//this.skill 이케쓸려면 클래스 내부에서 사용할수 있게 private, protected 쓰면된다
+
+//외부에서 접근이 불가능하지만 
+StaticClass.skill
+//이런식으론 당연히 가능
+
+
 
 
 
