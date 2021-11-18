@@ -30,3 +30,43 @@ const errFnc = function () {
     throw new Error();
 };
 //이렇게 화살표 함수뿐아니라 함수표현식에서도 아무것도 안남게 되면 never타입으로 지정된다
+//타입스크립트에서 사용가능한 키워드
+/*
+자바, c언어 같은곳에서 쓰는 객체지향키워드를 사용할수 있음
+public private protected static같은것...
+class를 많이 만드는 로직에서 유용함
+*/
+class User {
+    constructor(a) {
+        this.familyName = "kim";
+        this.name = this.familyName + a;
+    }
+}
+//public 키워드를 사용하면 모든 자녀가 사용하고 수정이 가능하다
+let user1 = new User("park");
+user1.name = "안녕";
+//이제까지 public을 안붙여도 똑같았는데 pubilc이 default값이라 그럼
+//user1.age = "11"
+//private키워드로 생성하면 위에처럼 접근해서 바꾸려해도 불가능하고 class내에서만 조작가능하다 
+//함부로 변경하면 안되는 변수에 지정해준다
+//혹시라도 class외부에서 private키워드로 선언된 변수를 변경하고 싶을땐
+class User2 {
+    constructor(a) {
+        this.familyName = "kim";
+        this.name = this.familyName + a;
+    }
+    changeLastName(b) {
+        this.familyName = b;
+    }
+}
+let user2 = new User2("민수");
+user2.changeLastName("park");
+//미리 함수를 만들어서 사용하면됨
+//pubilc사용하면 필드에 적고 재할당하는 구간을 줄일수 있음
+class Person {
+    constructor(name) {
+        this.name = name;
+    }
+}
+const myperson = new Person("kim");
+console.log(myperson); //{ name: "kim" }
