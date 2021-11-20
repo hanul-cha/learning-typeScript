@@ -171,4 +171,11 @@ class Square {
         background:${this.color}"></div>`;
         document.body.insertAdjacentHTML( 'beforeend', square );
     }
+
+
 }
+
+let sq = new Square(30, 30, "blue")
+sq.drow()
+sq.drow()
+sq.drow()
