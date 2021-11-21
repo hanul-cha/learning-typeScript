@@ -58,3 +58,37 @@ const lenghtFnc = <myType extends LengthCheck>(x :myType) => {
 const lenghtA = lenghtFnc<string>("123")
 console.log(lenghtA)
 
+//test
+
+const testFnc = <myType extends string|string[]>(x :myType) :void => {
+    console.log(x.length)
+}
+
+testFnc("testss")
+testFnc(["test", "test2"])
+
+interface Animal {
+    name : string;
+    age : number 
+  }
+  
+let data = '{"name" : "dog", "age" : 1 }'
+
+const 함수 = <myType>(a :string) :myType => {
+    return JSON.parse(a)
+}
+let result = 함수<Animal>(data) 
+
+class Person <Type> {
+    name :Type;
+    constructor(a :Type){
+      this.name = a;
+    }
+  }
+  let a = new Person<string>('어쩌구');
+  a.name 
+
+
+
+
+

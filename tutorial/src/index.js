@@ -38,3 +38,21 @@ const lenghtFnc = (x) => {
 };
 const lenghtA = lenghtFnc("123");
 console.log(lenghtA);
+//test
+const testFnc = (x) => {
+    console.log(x.length);
+};
+testFnc("testss");
+testFnc(["test", "test2"]);
+let data = '{"name" : "dog", "age" : 1 }';
+const 함수 = (a) => {
+    return JSON.parse(a);
+};
+let result = 함수(data);
+class Person {
+    constructor(a) {
+        this.name = a;
+    }
+}
+let a = new Person('어쩌구');
+a.name;
