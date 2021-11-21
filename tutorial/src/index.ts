@@ -3,7 +3,7 @@ import { Name, age } from './a'
 예전에 js에 import export가 없을땐 namespace를 사용했었음
 */
 
-let test :Name = "park";
+let test :Name = "park"; 
 
 /* 
 import같은게 없었기때문에 여러 스크립트를 html에 연결하는 방식을썻는데
