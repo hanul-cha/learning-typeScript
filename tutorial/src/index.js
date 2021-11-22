@@ -80,3 +80,10 @@ let obj2 = {
         }
     }
 };
+/*---- object 타입 변환기 만들기 ----*/
+let myObj = {
+    name: 'kim',
+    age: 20
+};
+console.log(Object.keys(myObj));
+let a = "age";

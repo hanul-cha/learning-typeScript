@@ -1,1 +1,1 @@
-((...o)=>{console.log(o)})(1,"2"),console.log(((...o)=>{let s=[],e=[];return[1,"12",123,"325"].forEach((o=>{"string"==typeof o?e.push(o):s.push(o)})),[s,e]})()),new class{constructor(o){this.price=1e3,this.model=o}}("morning");
+((...o)=>{console.log(o)})(1,"2"),console.log(((...o)=>{let e=[],s=[];return[1,"12",123,"325"].forEach((o=>{"string"==typeof o?s.push(o):e.push(o)})),[e,s]})()),new class{constructor(o){this.price=1e3,this.model=o}}("morning"),console.log(Object.keys({name:"kim",age:20}));

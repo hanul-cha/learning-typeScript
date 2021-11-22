@@ -154,3 +154,51 @@ let obj2 :ObjType2 = {
     }
   }
 }
+
+
+/*---- object 타입 변환기 만들기 ----*/
+let myObj = {
+    name: 'kim',
+    age: 20
+}
+console.log(Object.keys(myObj))
+//이케 하면 myObj에 있는 키들을 전부 가져온다
+
+//typescript에선 keyof라는게 있는데 비슷하게 작동한다
+interface Person {
+    age :number,
+    name :string
+}
+
+type PersonKeys = keyof Person;
+let a :PersonKeys = "age"
+//이케 리터럴 타입으로 가져온다 여러개일경우 유니온으로온다
+
+//타입변환기 만들기
+type OtherCar = {
+    color :boolean,
+    model :boolean,
+    price :boolean|number
+}
+
+type TypeChacger<myType> = {
+    [key in keyof myType] :string
+}
+//왼쪽에 key값이 있다면 string으로 해달라는 forIn문비슷한 녀석
+
+type newCar = TypeChacger<OtherCar>
+
+
+
+
+type Bus = {
+    color : string,
+    model : boolean,
+    price : number
+}
+
+type TypeChacgerBus<myType, t> = {
+    [key in keyof myType] :t
+}
+
+type NewBus = TypeChacgerBus<Bus, number>
