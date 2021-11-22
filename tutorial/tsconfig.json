@@ -2,6 +2,9 @@
     "compilerOptions": { //컴파일 옵션
         "target": "es6", //빌드 결과물을 es6 방식을 한다는 뜻
         "module": "commonjs",
-        "strictNullChecks": true
+        "strictNullChecks": true,
+        "typeRoots": ["./src/types"]
+        //"declaration": true //이 값이 true면 ts파일마다 d.ts파일이 자동생성됨
+        
     }
 }
