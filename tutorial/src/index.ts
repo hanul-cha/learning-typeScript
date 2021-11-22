@@ -58,3 +58,41 @@ const mynum :myAge = 1;
 //이런식으로 전역에서 쓸수 있다
 //제이쿼리 bootstrap이런건 js형식 파일이라 유명한 라이브러리d.ts파일들을 찾아서 설치하는게 정신건강에 이로움
 
+
+
+
+//implements 키워드
+/* 
+interface는 object 타입지정을 할 때 사옹하는데 class타입을 확인하고 싶을때도 사용가능
+단 implements가 필요하다
+*/
+
+interface CarType {
+    model :string
+    price :Number
+}
+
+class Car implements CarType {
+    model :string
+    price :number = 1000;
+    constructor (a :string) {
+        this.model = a
+    }
+}
+
+let gogoCar = new Car("morning")
+
+//implements는 타입을 할당하고 변형시키는 키워드는 아니다
+
+class NewCar implements CarType {
+    model;
+    price;
+    tax(a) {
+        return a * 0.1
+    }
+}
+/* 
+근데 CarType에 있던 model : string 이런게 반영되는건 아닙니다. class 안에서의 model은 any 타입임
+class 함수도 마찬가지로 함수에 있던 number 타입이 전혀 반영되지 않습니다. 
+결론은 implements는 class의 타입을 체크하는 용도지 할당하는게 아님을 명심합시다. 
+*/
