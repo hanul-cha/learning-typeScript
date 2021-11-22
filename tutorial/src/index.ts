@@ -96,3 +96,61 @@ class NewCar implements CarType {
 class 함수도 마찬가지로 함수에 있던 number 타입이 전혀 반영되지 않습니다. 
 결론은 implements는 class의 타입을 체크하는 용도지 할당하는게 아님을 명심합시다. 
 */
+
+
+
+/*---- index signatures ----*/
+//오브젝트에서 모든 키값이 중복된다면 사용할수 있음
+
+interface StringOnly {
+    [key :string] :string
+}
+
+let user :StringOnly = {
+    name: 'kim',
+    age: '20',
+    location: 'seoul'
+}
+
+//반복되는 오브젝트 형태에서 recursive 한 타입만드는법
+
+interface MyCssType {
+    'fonct-size' :MyCssType|number
+}
+
+let myCss :MyCssType = {
+    'fonct-size': {
+        'fonct-size': {
+            'fonct-size': 14
+        }
+    }
+}
+
+interface ObjType {
+    [key :string] :string|number
+}
+
+let obj :ObjType = {
+  model : 'k5',
+  brand : 'kia',
+  price : 6000,
+  year : 2030,
+  date : '6월',
+  percent : '5%',
+  dealer : '김차장',
+}
+
+interface ObjType2 {
+    [key :string] :number | ObjType2
+
+}
+
+let obj2 :ObjType2 = {
+  'font-size' : 10,
+  'secondary' : {
+    'font-size' : 12,
+    'third' : {
+      'font-size' : 14
+    }
+  }
+}
