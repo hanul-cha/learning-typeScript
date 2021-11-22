@@ -202,3 +202,41 @@ type TypeChacgerBus<myType, t> = {
 }
 
 type NewBus = TypeChacgerBus<Bus, number>
+
+/*-- 조건문으로 타입 만들기 & infer --*/
+type NewAge<t> = t extends string ? string : unknown
+let c :NewAge<string>
+//extends는 '왼쪽이 오른쪽의 성질을 가지고 있나?'라는뜻으로도 쓸수 있음
+
+type FirstItem<t> = t extends any[] ? t[1] : any
+let d :FirstItem<string[]>
+
+//infer : 타입을 왼쪽에서 추출해줍니다
+type NerPerson<t> = t extends infer R ? R : unknown
+let e :NerPerson<string>
+//R는 t에서 가지고 있는 string이 된다
+
+//특이한점
+type GetType<T> = T extends (infer R)[] ? R : unknown
+type f = GetType<string[]>
+/* 
+infer는 왼쪽 타입을 가져온다고 했는데
+위 예제를 보면 string[] 를 가져오는게 아니고 string을 가져온다
+이건 좌우에 모습을 비교해서 가져오는 특이한 점 덕이다
+왼쪽에 []가 있고 오른쪽에도 []가 있으니 같은위치를 인자로 가져온다는 느낌
+특정 type을 가져오기 좋다
+*/
+type GetTypeFnc<T> = T extends (() => infer R) ? R : unknown
+type g = GetTypeFnc< () => void >
+//이런식으로 특정 type을 가져올때 유용하다
+
+//근데 위에 예제는 사실 이미 만들어진 타입이 있음
+type h = ReturnType<() => void>
+
+type Age<T> = T extends [string, ...any] ? T[0] : unknown;
+let age1 :Age<[string, number]>;
+let age2 :Age<[boolean, number]>;
+
+
+type 타입뽑기<T> = T extends (x: infer R) => void ? R : any;
+type a = 타입뽑기<(x :number) => void> 

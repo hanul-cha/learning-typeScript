@@ -87,3 +87,8 @@ let myObj = {
 };
 console.log(Object.keys(myObj));
 let a = "age";
+let c;
+let d;
+let e;
+let age1;
+let age2;
